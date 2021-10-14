@@ -35,7 +35,7 @@ class NEO4JExample():
 
     @staticmethod
     def _import_data_pedia1(tx):
-        file = f"http://127.0.0.1:8080/hudong_pedia.csv"
+        file = f"http://127.0.0.1:9090/hudong_pedia.csv"
         sql = """
         LOAD CSV WITH HEADERS  FROM "%s" AS line  
 CREATE (p:HudongItem{title:line.title,image:line.image,detail:line.detail,url:line.url,openTypeList:line.openTypeList,baseInfoKeyList:line.baseInfoKeyList,baseInfoValueList:line.baseInfoValueList}) 
@@ -45,7 +45,7 @@ CREATE (p:HudongItem{title:line.title,image:line.image,detail:line.detail,url:li
 
     @staticmethod
     def _import_data_pedia2(tx):
-        file = f"http://127.0.0.1:8080/hudong_pedia2.csv"
+        file = f"http://127.0.0.1:9090/hudong_pedia2.csv"
         sql = """
         LOAD CSV WITH HEADERS  FROM "%s" AS line  
 CREATE (p:HudongItem{title:line.title,image:line.image,detail:line.detail,url:line.url,openTypeList:line.openTypeList,baseInfoKeyList:line.baseInfoKeyList,baseInfoValueList:line.baseInfoValueList}) 
@@ -63,7 +63,7 @@ CREATE (p:HudongItem{title:line.title,image:line.image,detail:line.detail,url:li
 
     @staticmethod
     def _import_data_new_node(tx):
-        file = f"http://127.0.0.1:8080/wikidataSpider/wikidataProcessing/new_node.csv"
+        file = f"http://127.0.0.1:9090/wikidataSpider/wikidataProcessing/new_node.csv"
         sql = """
         LOAD CSV WITH HEADERS  FROM "%s" AS line  
 CREATE (:NewNode { title: line.title }) 
@@ -79,7 +79,7 @@ CREATE (:NewNode { title: line.title })
         print(result)
     @staticmethod
     def _import_relaion2(tx):
-        file = f"http://127.0.0.1:8080/wikidataSpider/wikidataProcessing/wikidata_relation2.csv"
+        file = f"http://127.0.0.1:9090/wikidataSpider/wikidataProcessing/wikidata_relation2.csv"
         sql = """
         LOAD CSV WITH HEADERS  FROM "%s" AS line  
         MATCH (entity1:HudongItem{title:line.HudongItem}) , (entity2:NewNode{title:line.NewNode})
@@ -90,7 +90,7 @@ CREATE (:NewNode { title: line.title })
 
     @staticmethod
     def _import_relaion1(tx):
-        file = f"http://127.0.0.1:8080/wikidataSpider/wikidataProcessing/wikidata_relation.csv"
+        file = f"http://127.0.0.1:9090/wikidataSpider/wikidataProcessing/wikidata_relation.csv"
         sql = """
         LOAD CSV WITH HEADERS  FROM "%s" AS line  
         MATCH (entity1:HudongItem{title:line.HudongItem1}) , (entity2:HudongItem{title:line.HudongItem2})
@@ -100,7 +100,7 @@ CREATE (:NewNode { title: line.title })
         print(result)
     @staticmethod
     def _import_attr_Hudong2Hudong(tx):
-        file = f"http://127.0.0.1:8080/attributes.csv"
+        file = f"http://127.0.0.1:9090/attributes.csv"
         sql = """
         LOAD CSV WITH HEADERS  FROM "%s" AS line  
     MATCH (entity1:HudongItem{title:line.Entity}), (entity2:HudongItem{title:line.Attribute})
@@ -110,7 +110,7 @@ CREATE (:NewNode { title: line.title })
         print(result)
     @staticmethod
     def _import_attr_Hudong2Newnode(tx):
-        file = f"http://127.0.0.1:8080/attributes.csv"
+        file = f"http://127.0.0.1:9090/attributes.csv"
         sql = """
         LOAD CSV WITH HEADERS  FROM "%s" AS line  
         MATCH (entity1:HudongItem{title:line.Entity}), (entity2:NewNode{title:line.Attribute})
@@ -120,7 +120,7 @@ CREATE (:NewNode { title: line.title })
         print(result)
     @staticmethod
     def _import_attr_Newnode2Newnode(tx):
-        file = f"http://127.0.0.1:8080/attributes.csv"
+        file = f"http://127.0.0.1:9090/attributes.csv"
         sql = """
         LOAD CSV WITH HEADERS  FROM "%s" AS line  
         MATCH (entity1:NewNode{title:line.Entity}), (entity2:NewNode{title:line.Attribute})
@@ -130,7 +130,7 @@ CREATE (:NewNode { title: line.title })
         print(result)
     @staticmethod
     def _import_attr_Newnode2Hudong(tx):
-        file = f"http://127.0.0.1:8080/attributes.csv"
+        file = f"http://127.0.0.1:9090/attributes.csv"
         sql = """
         LOAD CSV WITH HEADERS  FROM "%s" AS line  
         MATCH (entity1:NewNode{title:line.Entity}), (entity2:HudongItem{title:line.Attribute})
@@ -140,7 +140,7 @@ CREATE (:NewNode { title: line.title })
         print(result)
     @staticmethod
     def _import_static_weather(tx):
-        file = f"http://127.0.0.1:8080/wikidataSpider/weatherData/static_weather_list.csv"
+        file = f"http://127.0.0.1:9090/wikidataSpider/weatherData/static_weather_list.csv"
         sql = """
         LOAD CSV WITH HEADERS  FROM "%s" AS line  
         MERGE (:Weather { title: line.title }) 
@@ -156,7 +156,7 @@ CREATE (:NewNode { title: line.title })
         print(result)
     @staticmethod
     def _import_weather_plant(tx):
-        file = f"http://127.0.0.1:8080/wikidataSpider/weatherData/weather_plant.csv"
+        file = f"http://127.0.0.1:9090/wikidataSpider/weatherData/weather_plant.csv"
         sql = """
         LOAD CSV WITH HEADERS  FROM "%s" AS line  
         MATCH (entity1:Weather{title:line.Weather}) , (entity2:HudongItem{title:line.Plant})
@@ -166,7 +166,7 @@ CREATE (:NewNode { title: line.title })
         print(result)
     @staticmethod
     def _import_city_weather(tx):
-        file = f"http://127.0.0.1:8080/wikidataSpider/weatherData/city_weather.csv"
+        file = f"http://127.0.0.1:9090/wikidataSpider/weatherData/city_weather.csv"
         sql = """
         LOAD CSV WITH HEADERS  FROM "%s" AS line  
         MATCH (city{title:line.city}) , (weather{title:line.weather})
